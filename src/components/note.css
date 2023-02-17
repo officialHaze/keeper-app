@@ -1,0 +1,42 @@
+.notes-container {
+	position: relative;
+}
+
+.backBtn-inactive {
+	display: none;
+}
+
+.backBtn-active {
+	position: absolute;
+	right: 5rem;
+	bottom: 1rem;
+	background: none;
+	border: none;
+	box-shadow: none;
+	outline: none;
+	font-size: 2.5rem;
+	cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+	.notes-container {
+		width: 12rem !important;
+		display: flex;
+		height: 20rem !important;
+	}
+
+	.note-heading {
+		font-size: 1rem !important;
+	}
+
+	.notes-container-active {
+		width: 95% !important;
+		position: relative;
+	}
+
+	.backBtn-active {
+		right: 3rem;
+		bottom: 0;
+		font-size: 2rem;
+	}
+}
