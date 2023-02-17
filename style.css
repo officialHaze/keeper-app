@@ -1,0 +1,142 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@1,100&family=Montserrat:wght@400;600&family=Poppins:ital,wght@0,400;0,500;0,600;0,900;1,400&family=Sacramento&display=swap");
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	min-height: 100vh;
+	font-family: "Montserrat", sans-serif;
+	position: relative;
+	background: #eee;
+}
+
+.header-container {
+	background: #ffbf00;
+	color: #fff;
+	padding: 1.5rem 2rem;
+	font-family: "McLaren", cursive;
+	font-weight: 100;
+	box-shadow: 4px 4px 15px rgba(122, 122, 122, 0.3);
+}
+
+.note-container,
+.active-note-container {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 3rem;
+}
+
+.active-note-container {
+	flex-direction: row-reverse;
+}
+
+#note {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	margin: 1rem 2rem;
+	padding: 1rem;
+	min-height: 5rem;
+	background: white;
+	border-radius: 0.5rem;
+	box-shadow: 7px 7px 20px rgba(122, 122, 122, 0.3);
+	cursor: pointer;
+}
+
+#note > p,
+#note > div > p {
+	font-size: 1.1rem;
+	line-height: 2;
+}
+
+.footer {
+	text-align: center;
+	padding: 5rem 0;
+	margin: 10rem 0;
+	color: #888888;
+}
+
+/* Styling the input area  */
+.input-container {
+	display: flex;
+	justify-content: center;
+	padding: 3rem;
+	position: relative;
+}
+
+.input {
+	outline: none;
+	border: none;
+	box-shadow: none;
+	resize: none;
+	padding: 1rem 1.5rem;
+	font-family: "McLaren", cursive;
+	width: 100%;
+	font-size: 1.25rem;
+}
+
+.input-form {
+	width: 45rem;
+	border-radius: 0.5rem;
+	padding: 1.25rem 0;
+	background: white;
+	box-shadow: 4px 4px 20px rgba(122, 122, 122, 0.3);
+	position: relative;
+}
+
+.addButton {
+	border: none;
+	outline: none;
+	box-shadow: none;
+	position: absolute;
+	right: 2rem;
+	bottom: -1.25rem;
+	background: #ffbf00;
+	color: white;
+	width: 3rem;
+	height: 3rem;
+	border-radius: 50%;
+	font-size: 1.5rem;
+	cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+	#note {
+		width: 100% !important;
+		margin: 0 !important;
+		height: 100% !important;
+	}
+
+	#note > p {
+		font-size: 0.85rem;
+	}
+
+	.note-container {
+		gap: 0.5rem;
+	}
+
+	.input {
+		font-size: 1rem;
+	}
+
+	.addButton {
+		width: 2.5rem;
+		height: 2.5rem;
+		right: 1.5rem;
+		bottom: -1rem;
+	}
+
+	.input-container {
+		padding: 3rem 1rem;
+	}
+
+	.active-note-container {
+		gap: 0.85rem;
+	}
+}
