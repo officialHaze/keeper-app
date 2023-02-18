@@ -10,7 +10,7 @@ export default function InputArea({ onAdd, noteEditInfo }) {
 
 	useEffect(() => {
 		const editNote = () => {
-			if (title && newBody) {
+			if ((newBody && id) || title) {
 				let body = newBody.replace("</br>", "\n");
 				for (let i = 0; i < newBody.length; i++) {
 					body = body.replace("</br>", "\n");
@@ -70,6 +70,7 @@ export default function InputArea({ onAdd, noteEditInfo }) {
 						placeholder="Title"
 						onChange={handleChange}
 						value={note.title}
+						style={{ fontWeight: "600" }}
 					/>
 				</div>
 				<div>
@@ -80,6 +81,7 @@ export default function InputArea({ onAdd, noteEditInfo }) {
 						className="input"
 						placeholder="Note..."
 						value={note.body}
+						style={{ lineHeight: "1.85" }}
 					/>
 				</div>
 				<button className="addButton">+</button>

@@ -32,9 +32,9 @@ body {
 	gap: 3rem;
 }
 
-.active-note-container {
+/* .active-note-container {
 	flex-direction: row-reverse;
-}
+} */
 
 #note {
 	display: flex;
@@ -114,7 +114,7 @@ body {
 	}
 
 	#note > p {
-		font-size: 0.85rem;
+		font-size: 1rem;
 	}
 
 	.note-container {
@@ -123,6 +123,7 @@ body {
 
 	.input {
 		font-size: 1rem;
+		font-family: "Poppins", sans-serif;
 	}
 
 	.addButton {
@@ -138,5 +139,9 @@ body {
 
 	.active-note-container {
 		gap: 0.85rem;
+	}
+
+	.footer {
+		font-size: 0.85rem;
 	}
 }

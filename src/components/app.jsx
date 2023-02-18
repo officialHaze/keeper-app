@@ -10,9 +10,14 @@ export default function App() {
 	const [editTheNote, setEditDetails] = useState({});
 	const [active, setActive] = useState();
 
+	useEffect(() => {
+		const notes = JSON.parse(localStorage.getItem("notes"));
+		notes && setNotes(notes);
+	}, []);
+
 	const addNote = (note) => {
 		setNotes((prevNotes) => {
-			const revisedNotes = prevNotes.filter((prevNote, index) => {
+			const revisedNotes = prevNotes.filter((prevNotes, index) => {
 				return index !== note.id;
 			});
 			localStorage.setItem("notes", JSON.stringify([...revisedNotes, note]));
@@ -20,16 +25,22 @@ export default function App() {
 		});
 	};
 
-	useEffect(() => {
-		const notes = JSON.parse(localStorage.getItem("notes"));
-		notes && setNotes(notes);
-	}, []);
-
 	const editNote = (title, newBody, id) => {
 		setEditDetails({
 			id,
 			title,
 			newBody,
+		});
+	};
+
+	const deleteNote = (id) => {
+		setNotes((prevNotes) => {
+			const newNotesArr = prevNotes.filter((prevNotes, index) => {
+				console.log(index);
+				return index !== id;
+			});
+			localStorage.setItem("notes", JSON.stringify(newNotesArr));
+			return newNotesArr;
 		});
 	};
 
@@ -49,6 +60,7 @@ export default function App() {
 							key={index}
 							onActive={activeMotion}
 							onEdit={editNote}
+							onDelete={deleteNote}
 							title={note.title}
 							body={note.body}
 							id={index}

@@ -2,6 +2,10 @@
 	position: relative;
 }
 
+.notes-container-active {
+	position: relative;
+}
+
 .backBtn-inactive {
 	display: none;
 }
@@ -9,12 +13,15 @@
 .backBtn-active {
 	position: absolute;
 	right: 5rem;
-	bottom: 1rem;
-	background: none;
+	bottom: 1.85rem;
+	background: #537fe7;
+	color: white;
 	border: none;
+	border-radius: 0.5rem;
 	box-shadow: none;
 	outline: none;
-	font-size: 2.5rem;
+	font-size: 0.85rem;
+	padding: 0.5rem 0.85rem;
 	cursor: pointer;
 }
 
@@ -22,21 +29,24 @@
 	.notes-container {
 		width: 12rem !important;
 		display: flex;
-		height: 20rem !important;
+		height: 100% !important;
 	}
 
 	.note-heading {
-		font-size: 1rem !important;
+		font-size: 1.15rem !important;
 	}
 
 	.notes-container-active {
 		width: 95% !important;
-		position: relative;
 	}
 
 	.backBtn-active {
 		right: 3rem;
-		bottom: 0;
-		font-size: 2rem;
+		bottom: 0.85rem;
+		font-size: 0.75rem;
+	}
+
+	.fa-trash {
+		font-size: 1rem !important;
 	}
 }

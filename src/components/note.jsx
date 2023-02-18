@@ -2,14 +2,11 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import "./note.css";
 
-export default function Note({ title, body, onEdit, id, onActive }) {
+export default function Note({ title, body, onEdit, onDelete, id, onActive }) {
 	const [active, setActive] = useState(false);
 	const newBody = body.replace(/\n/g, "</br>");
-	const truncatedBody = newBody.substr(0, 150) + "...";
-
-	const handleEdit = () => {
-		onEdit(title, newBody, id);
-	};
+	const truncatedBody = newBody.substr(0, 100) + "...";
+	let timeout;
 
 	const noteStyle = {
 		display: "flex",
@@ -17,7 +14,7 @@ export default function Note({ title, body, onEdit, id, onActive }) {
 		gap: "0.5rem",
 		margin: "1rem 2rem",
 		padding: "1rem",
-		height: "15rem",
+		height: "100%",
 		background: "white",
 		transition: "width 1s, height 1s",
 		width: "40rem",
@@ -30,6 +27,22 @@ export default function Note({ title, body, onEdit, id, onActive }) {
 		width: "100%",
 		height: "100%",
 		padding: "2rem",
+	};
+
+	const handleMouseUp = () => {
+		if (timeout) clearTimeout(timeout);
+		onEdit("", "", "");
+	};
+
+	const handleMouseDown = () => {
+		timeout = setTimeout(() => {
+			onEdit(title, newBody, id);
+			window.scrollTo(0, 0);
+		}, 1000);
+	};
+
+	const handleDelete = () => {
+		onDelete(id);
 	};
 
 	return (
@@ -46,7 +59,7 @@ export default function Note({ title, body, onEdit, id, onActive }) {
 							justifyContent: "center",
 							alignItems: "center",
 					  }
-					: { transition: "width 1s", width: "45rem", height: "17rem" }
+					: { transition: "width 1s", width: "45rem", height: "100%" }
 			}
 		>
 			<div
@@ -55,6 +68,10 @@ export default function Note({ title, body, onEdit, id, onActive }) {
 					setActive(true);
 					onActive(true);
 				}}
+				onMouseDown={handleMouseDown}
+				onMouseUp={handleMouseUp}
+				onTouchStart={handleMouseDown}
+				onTouchEnd={handleMouseUp}
 				style={active ? activeStyle : noteStyle}
 			>
 				<div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -62,9 +79,9 @@ export default function Note({ title, body, onEdit, id, onActive }) {
 						{title}
 					</p>
 					<i
-						onClick={handleEdit}
-						style={{ fontSize: "1.5rem", marginRight: "0.5rem" }}
-						className="fa-solid fa-square-pen"
+						onClick={handleDelete}
+						style={{ fontSize: "1.25rem", marginRight: "0.5rem", color: "red" }}
+						className={active ? "fa-solid fa-trash" : ""}
 					></i>
 				</div>
 				<p dangerouslySetInnerHTML={active ? { __html: newBody } : { __html: truncatedBody }} />
@@ -76,7 +93,7 @@ export default function Note({ title, body, onEdit, id, onActive }) {
 				}}
 				className={active ? "backBtn-active" : "backBtn-inactive"}
 			>
-				⬅
+				Back
 			</button>
 		</motion.div>
 	);
